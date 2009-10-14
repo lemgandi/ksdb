@@ -1,0 +1,649 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>mainWindow</class>
+<widget class="QMainWindow">
+    <property name="name">
+        <cstring>mainWindow</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>619</width>
+            <height>887</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Simple Database Creator</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="screenMaker">
+            <property name="name">
+                <cstring>screenMaker3</cstring>
+            </property>
+            <property name="focusPolicy">
+                <enum>StrongFocus</enum>
+            </property>
+        </widget>
+    </vbox>
+</widget>
+<menubar>
+    <property name="name">
+        <cstring>MenuBar</cstring>
+    </property>
+    <item text="&amp;File" name="fileMenu">
+        <action name="fileNewAction"/>
+        <action name="fileOpenAction"/>
+        <action name="fileNewBackgroundAction"/>
+        <action name="fileSaveAction"/>
+        <action name="fileSaveAsAction"/>
+        <separator/>
+        <separator/>
+        <action name="fileExitAction"/>
+    </item>
+    <item text="&amp;Edit" name="editMenu">
+        <action name="editSelectAction"/>
+        <action name="editDrawAction"/>
+        <separator/>
+    </item>
+    <item text="&amp;Help" name="helpMenu">
+        <action name="helpContentsAction"/>
+        <action name="helpIndexAction"/>
+        <separator/>
+        <action name="helpAboutAction"/>
+    </item>
+</menubar>
+<toolbars>
+    <toolbar dock="2">
+        <property name="name">
+            <cstring>toolBar</cstring>
+        </property>
+        <property name="label">
+            <string>Tools</string>
+        </property>
+        <action name="fileNewAction"/>
+        <action name="fileOpenAction"/>
+        <action name="fileSaveAction"/>
+        <action name="fileSaveAsAction"/>
+        <action name="editDrawAction"/>
+        <action name="editSelectAction"/>
+    </toolbar>
+</toolbars>
+<customwidgets>
+    <customwidget>
+        <class>screenMaker</class>
+        <header location="local">screenmaker.h</header>
+        <sizehint>
+            <width>500</width>
+            <height>500</height>
+        </sizehint>
+        <container>0</container>
+        <sizepolicy>
+            <hordata>7</hordata>
+            <verdata>7</verdata>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+        <pixmap>image0</pixmap>
+        <signal>regionSelected(QWidget *)</signal>
+        <signal>widgetSelected(QWidget *)</signal>
+        <signal>widgetResized(QWidget *)</signal>
+        <signal>widgetMoved(QWidget *)</signal>
+        <slot access="public" specifier="">selectMode()</slot>
+        <slot access="public" specifier="">drawMode()</slot>
+        <slot access="public" specifier="">moveWidget(QWidget *)</slot>
+        <slot access="public" specifier="">resizeWidget(QWidget *)</slot>
+        <slot access="public" specifier="">replaceWidget(QWidget *,QWidget *)</slot>
+        <slot access="public" specifier="">removeWidget(QWidget *)</slot>
+        <slot access="public" specifier="">clearDrawingField()</slot>
+        <slot access="public" specifier="">setBackground()</slot>
+        <slot access="public" specifier="">mousePressed(QMouseEvent *)</slot>
+        <slot access="public" specifier="">slot()</slot>
+        <slot access="public" specifier="">setBackground(const QPixmap &amp;)</slot>
+        <property type="Bool">property</property>
+    </customwidget>
+</customwidgets>
+<actions>
+    <action>
+        <property name="name">
+            <cstring>fileNewAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>filenew</iconset>
+        </property>
+        <property name="text">
+            <string>New</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;New</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+N</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileOpenAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>fileopen</iconset>
+        </property>
+        <property name="text">
+            <string>Open</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Open...</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+O</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileSaveAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>filesave</iconset>
+        </property>
+        <property name="text">
+            <string>Save</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Save</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+S</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileSaveAsAction</cstring>
+        </property>
+        <property name="text">
+            <string>Save As</string>
+        </property>
+        <property name="menuText">
+            <string>Save &amp;As...</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>filePrintAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>print</iconset>
+        </property>
+        <property name="text">
+            <string>Print</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Print...</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+P</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileExitAction</cstring>
+        </property>
+        <property name="text">
+            <string>Exit</string>
+        </property>
+        <property name="menuText">
+            <string>E&amp;xit</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editUndoAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>undo</iconset>
+        </property>
+        <property name="text">
+            <string>Undo</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Undo</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+Z</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editRedoAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>redo</iconset>
+        </property>
+        <property name="text">
+            <string>Redo</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Redo</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+Y</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editCutAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>editcut</iconset>
+        </property>
+        <property name="text">
+            <string>Cut</string>
+        </property>
+        <property name="menuText">
+            <string>Cu&amp;t</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+X</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editCopyAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>editcopy</iconset>
+        </property>
+        <property name="text">
+            <string>Copy</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Copy</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+C</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editPasteAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>editpaste</iconset>
+        </property>
+        <property name="text">
+            <string>Paste</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Paste</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+V</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editFindAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>searchfind</iconset>
+        </property>
+        <property name="text">
+            <string>Find</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Find...</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+F</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpContentsAction</cstring>
+        </property>
+        <property name="text">
+            <string>Contents</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Contents...</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpIndexAction</cstring>
+        </property>
+        <property name="text">
+            <string>Index</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Index...</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpAboutAction</cstring>
+        </property>
+        <property name="text">
+            <string>About</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;About</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editSelectAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>select.png</iconset>
+        </property>
+        <property name="text">
+            <string>Select</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Select</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editDrawAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>draw.png</iconset>
+        </property>
+        <property name="text">
+            <string>Draw</string>
+        </property>
+        <property name="menuText">
+            <string>Draw</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editMoveAction</cstring>
+        </property>
+        <property name="text">
+            <string>&amp;Move</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Move</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editSizeAction</cstring>
+        </property>
+        <property name="text">
+            <string>&amp;Size</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Size</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>Action</cstring>
+        </property>
+        <property name="text">
+            <string>Unnamed</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileNew_BackgroundAction</cstring>
+        </property>
+        <property name="text">
+            <string>New Background</string>
+        </property>
+        <property name="menuText">
+            <string>New Background</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileNewBackgroundAction</cstring>
+        </property>
+        <property name="text">
+            <string>New Background</string>
+        </property>
+        <property name="menuText">
+            <string>New Background</string>
+        </property>
+    </action>
+</actions>
+<images>
+    <image name="image0">
+        <data format="PNG" length="1002">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b000003b149444154388dad945f4c5b551cc73fe7dc4b7b4bcba0762d45c43114323599ee6192609c51d883892ce083f1718b3ebb185f8dc91e972cf39d2d2a2f1af664b6f1e0fe3863a0718969700eb0c52142da0242a1bd6d696f7bcff101585203ceb8fd9ece39f99dcff9fe7edf939f88c562ec465f5f9fe609442c161362173c3e3eae7b7a7ac8e7f36432196cdbfe4f907c3e4f2291201e8fe338cec3737357e9e8e828aded1e229d650e1f2d51754b082110124c13a4dc5ea341eb9dc284c0558a853f3ce8cb0677ef500fde7d39d2596679e326597b8e9abb85d7a770ab16ab6983ec5a05b487a70e36f0f4e10afe408d6a558310980108478dba4a1e8233990c5d474b64ed39aa3a8fe5f3317fbf81dbd70bccfeb205947632fd74f6589c1c6ea2f70d03a58ba0c1f2c9bdc1b66de3b8256a6e11cbe7e3ee1d181b590124fe2693aeee08d223c82c3a2c24b7b874bec8f26288774f7bd054504aef0dde6e99c0eb83f9fb266323cb80a27fb0958141836044605a2ee5523393371cc646fee2da37195aa35d0c0c5b4859ac03d7e91712dcaac5adab3650a3ff9d08ef7dd8404bb48869e5d958b5b87dadc4c9a1464e9f0d0326df7ebd86bd2e310cb1bf62d384d59441f2d70a070e1c60e09489929b988681bdd9cc97170bcc4c65595f71f8e0e3301337fc24a7732467831875a47f289652b0be5e4151e6d07316c1b0c0340d8ab92023e76d66a6b2840e36d2fb7a13fee632475e6edc367ea98a90fb98b7dd6310ca0328a44761582e1bab41befabcc0ec940d28bc5e93b68e064cab84e1d9beaeb48934eac1f53b01c1b000fca496aa54b61a99fcde61662a4b4b4b23d1680be9d426173e4df3602a48ea411989a4fd590f52a8fd156b05ed9d350e3defe3cfdf4b4c7ce770ea7d3fb9f520afbe1620daeee5c26735d20b9b9cfb6811a754a439e4e5c5639a4caa1e5caf586bfc0197b78702005cb9b4cae4cd3267ce8638fe964bd72b393e39d74928d242617303a756a37f284447770dcdbffc6384a05a85de1306e9a52057c7527c7131c3c42d3f475eb2303c82d4fc3276d6811db37efeb148723082d9b08f79f97c1e5729109a9a28307cc622d2d6cdf52b2b24efe548dedb00142009862cfa879ee1a71f6cec928353511472fbf4389148b0b0e0c108081412458dfe21c9f11351e67e7358595468246d1d1e5e38a6e9e851bc39d84ab502a669331dafec0d8ec7e3e8cb06e1a881d727d1ae40180a434a8c9db129a54126ad48a7358c2b4c5352c8c374bcccdab2bb37d8719cba79fab8211f9df218e0582c261e95f8bfc04f1a1e8bc5c4dfe0a190172af6a9690000000049454e44ae426082</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>fileNewAction</sender>
+        <signal>activated()</signal>
+        <receiver>mainWindow</receiver>
+        <slot>fileNew()</slot>
+    </connection>
+    <connection>
+        <sender>fileOpenAction</sender>
+        <signal>activated()</signal>
+        <receiver>mainWindow</receiver>
+        <slot>fileOpen()</slot>
+    </connection>
+    <connection>
+        <sender>fileSaveAction</sender>
+        <signal>activated()</signal>
+        <receiver>mainWindow</receiver>
+        <slot>fileSave()</slot>
+    </connection>
+    <connection>
+        <sender>fileSaveAsAction</sender>
+        <signal>activated()</signal>
+        <receiver>mainWindow</receiver>
+        <slot>fileSaveAs()</slot>
+    </connection>
+    <connection>
+        <sender>filePrintAction</sender>
+        <signal>activated()</signal>
+        <receiver>mainWindow</receiver>
+        <slot>filePrint()</slot>
+    </connection>
+    <connection>
+        <sender>fileExitAction</sender>
+        <signal>activated()</signal>
+        <receiver>mainWindow</receiver>
+        <slot>fileExit()</slot>
+    </connection>
+    <connection>
+        <sender>helpIndexAction</sender>
+        <signal>activated()</signal>
+        <receiver>mainWindow</receiver>
+        <slot>helpIndex()</slot>
+    </connection>
+    <connection>
+        <sender>helpContentsAction</sender>
+        <signal>activated()</signal>
+        <receiver>mainWindow</receiver>
+        <slot>helpContents()</slot>
+    </connection>
+    <connection>
+        <sender>helpAboutAction</sender>
+        <signal>activated()</signal>
+        <receiver>mainWindow</receiver>
+        <slot>helpAbout()</slot>
+    </connection>
+    <connection>
+        <sender>fileNewBackgroundAction</sender>
+        <signal>activated()</signal>
+        <receiver>mainWindow</receiver>
+        <slot>newBackground()</slot>
+    </connection>
+    <connection>
+        <sender>mainWindow</sender>
+        <signal>newBackground(const QPixmap &amp;)</signal>
+        <receiver>screenMaker3</receiver>
+        <slot>setBackground(const QPixmap&amp;)</slot>
+    </connection>
+    <connection>
+        <sender>editDrawAction</sender>
+        <signal>activated()</signal>
+        <receiver>mainWindow</receiver>
+        <slot>gotoDrawMode()</slot>
+    </connection>
+    <connection>
+        <sender>editSelectAction</sender>
+        <signal>activated()</signal>
+        <receiver>mainWindow</receiver>
+        <slot>gotoSelectMode()</slot>
+    </connection>
+    <connection>
+        <sender>screenMaker3</sender>
+        <signal>regionSelected(QWidget*)</signal>
+        <receiver>mainWindow</receiver>
+        <slot>regionDefined(QWidget*)</slot>
+    </connection>
+    <connection>
+        <sender>screenMaker3</sender>
+        <signal>widgetSelected(QWidget*)</signal>
+        <receiver>mainWindow</receiver>
+        <slot>widgetSelected(QWidget*)</slot>
+    </connection>
+    <connection>
+        <sender>mainWindow</sender>
+        <signal>destroyWidget(QWidget *)</signal>
+        <receiver>screenMaker3</receiver>
+        <slot>removeWidget(QWidget*)</slot>
+    </connection>
+    <connection>
+        <sender>mainWindow</sender>
+        <signal>moveWidget(QWidget *)</signal>
+        <receiver>screenMaker3</receiver>
+        <slot>moveWidget(QWidget*)</slot>
+    </connection>
+    <connection>
+        <sender>mainWindow</sender>
+        <signal>resizeWidget(QWidget *)</signal>
+        <receiver>screenMaker3</receiver>
+        <slot>resizeWidget(QWidget*)</slot>
+    </connection>
+    <connection>
+        <sender>screenMaker3</sender>
+        <signal>widgetMoved(QWidget*)</signal>
+        <receiver>mainWindow</receiver>
+        <slot>widgetMoved(QWidget*)</slot>
+    </connection>
+    <connection>
+        <sender>screenMaker3</sender>
+        <signal>widgetResized(QWidget*)</signal>
+        <receiver>mainWindow</receiver>
+        <slot>widgetResized(QWidget*)</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="local" impldecl="in declaration">fieldeditor.h</include>
+    <include location="local" impldecl="in declaration">typedefs.h</include>
+    <include location="local" impldecl="in implementation">screenmaker.h</include>
+    <include location="global" impldecl="in implementation">qwidget.h</include>
+    <include location="global" impldecl="in implementation">qcolor.h</include>
+    <include location="global" impldecl="in implementation">qfiledialog.h</include>
+    <include location="local" impldecl="in implementation">mockeditfield.h</include>
+    <include location="global" impldecl="in implementation">qlabel.h</include>
+    <include location="global" impldecl="in implementation">qapplication.h</include>
+    <include location="global" impldecl="in implementation">qpixmap.h</include>
+    <include location="local" impldecl="in implementation">fieldeditor.h</include>
+    <include location="global" impldecl="in implementation">qwidgetfactory.h</include>
+    <include location="global" impldecl="in implementation">qmap.h</include>
+    <include location="global" impldecl="in implementation">qpopupmenu.h</include>
+    <include location="local" impldecl="in implementation">filesaver.h</include>
+    <include location="global" impldecl="in implementation">libgen.h</include>
+    <include location="local" impldecl="in implementation">weditbuttonhandler.h</include>
+    <include location="local" impldecl="in implementation">weditcheckboxhandler.h</include>
+    <include location="local" impldecl="in implementation">weditlineedithandler.h</include>
+    <include location="local" impldecl="in implementation">wlabelhandler.h</include>
+    <include location="local" impldecl="in implementation">ksdbfilereader.h</include>
+    <include location="local" impldecl="in implementation">wedittextedithandler.h</include>
+    <include location="global" impldecl="in implementation">qmessagebox.h</include>
+    <include location="local" impldecl="in implementation">version.h</include>
+    <include location="local" impldecl="in implementation">mainwindow.ui.h</include>
+</includes>
+<variables>
+    <variable>widgetData wData;</variable>
+    <variable>fieldEditor *fieldEditorScreen;</variable>
+    <variable>QWidget *currentWidget;</variable>
+    <variable>QColor oldColor;</variable>
+    <variable>fieldVals fieldValues;</variable>
+    <variable>QPopupMenu *selectMenu;</variable>
+    <variable>QString fileSaveName;</variable>
+    <variable>bool Dirty;</variable>
+</variables>
+<signals>
+    <signal>newBackground(const QPixmap &amp;)</signal>
+    <signal>pushReplaceWidget(const QWidget *,const screenMaker *)</signal>
+    <signal>resizeWidget(QWidget *)</signal>
+    <signal>moveWidget(QWidget *)</signal>
+    <signal>destroyWidget(QWidget *)</signal>
+    <signal>editWidgetData(const fieldVals &amp;)</signal>
+</signals>
+<slots>
+    <slot>fileNew()</slot>
+    <slot>fileOpen()</slot>
+    <slot>gotoDrawMode()</slot>
+    <slot>gotoSelectMode()</slot>
+    <slot>fileSave()</slot>
+    <slot>fileSaveAs()</slot>
+    <slot>filePrint()</slot>
+    <slot>fileExit()</slot>
+    <slot>helpIndex()</slot>
+    <slot>helpContents()</slot>
+    <slot>helpAbout()</slot>
+    <slot>regionDefined( QWidget * w )</slot>
+    <slot>moveItem()</slot>
+    <slot>resizeItem()</slot>
+    <slot>itemProperties()</slot>
+    <slot>newBackground()</slot>
+    <slot access="protected">makeNewWidget( QWidget * w )</slot>
+    <slot>widgetSelected( QWidget * w )</slot>
+    <slot>widgetResized( QWidget * )</slot>
+    <slot>widgetMoved( QWidget * )</slot>
+    <slot>editorValues( const fieldVals &amp; newVals, QWidget * newWidget )</slot>
+    <slot access="protected">removeCurrentWidget()</slot>
+    <slot>resizeWidget()</slot>
+    <slot>moveWidget()</slot>
+    <slot>selectAnotherWidget()</slot>
+    <slot>deleteWidget()</slot>
+    <slot>quitSelect()</slot>
+    <slot>editWidget()</slot>
+    <slot>menuDeleteWidget()</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+    <function access="private" specifier="non virtual">destroy()</function>
+    <function access="protected">deSelectWidget()</function>
+    <function access="protected">setWidgetSelected( QWidget * w )</function>
+    <function access="protected">showMenu()</function>
+    <function access="protected">dumpCurrentWidgetValues()</function>
+    <function access="protected">setupNewWidget( QWidget * wp )</function>
+    <function access="protected">getSaveFileName()</function>
+    <function access="protected" returnType="bool">checkWidgetCollision( const QWidget * testWidget )</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>screenmaker.h</includehint>
+</includehints>
+</UI>

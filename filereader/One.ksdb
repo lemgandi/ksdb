@@ -1,0 +1,92 @@
+<!DOCTYPE KSDB>
+<ksdb version="9.9">
+<screen>
+<size>
+   <height>751</height>
+   <width>577</width>
+</size>
+</screen>
+<widget>
+   <qtwidgetname>QCheckBox</qtwidgetname>
+   <size>
+      <height>30</height>
+      <width>176</width>
+   </size>
+   <location>
+      <x>128</x>
+      <y>150</y>
+   </location>
+   <mdata>
+      <val K="fieldName" V="Checkbox One" />
+      <val K="initialValue" V="TRUE" />
+      <val K="legend" V="Checkbox One" />
+      <val K="name" V="checkboxeditor" />
+      <val K="widgetname" V="QCheckBox" />
+   </mdata>
+</widget>
+<widget>
+   <qtwidgetname>QLabel</qtwidgetname>
+   <size>
+      <height>30</height>
+      <width>336</width>
+   </size>
+   <location>
+	<x>112</x>
+	<y>0</y>
+   </location>
+   <mdata>
+      <val K="labelText" V="Top Label" />
+      <val K="name" V="labeleditor" />
+      <val K="widgetname" V="QLabel" />
+   </mdata>
+</widget>
+<widget>
+   <qtwidgetname>QLabel</qtwidgetname>
+   <size>
+      <height>30</height>
+      <width>176</width>
+   </size>
+   <location>
+      <x>112</x>
+      <y>90</y>
+   </location>
+   <mdata>
+      <val K="labelText" V="Input Label One" />   
+      <val K="name" V="labeleditor" />
+      <val K="widgetname" V="QLabel" />
+   </mdata>
+</widget>
+<widget>
+   <qtwidgetname>QLineEdit</qtwidgetname>
+   <size>
+      <height>30</height>
+      <width>224</width>
+   </size>
+   <location>
+      <x>304</x>
+      <y>90</y>
+   </location>
+   <mdata>
+      <val K="fieldname" V="Input One" />
+      <val K="name" V="inputeditor" />
+      <val K="widgetname" V="QLineEdit" />
+   </mdata>
+</widget>
+<widget>
+   <qtwidgetname>QPushButton</qtwidgetname>
+   <size>
+      <height>30</height>
+      <width>256</width>
+   </size>
+   <location>
+      <x>208</x>
+      <y>210</y>
+   </location>
+   <mdata>
+      <val K="buttonLegend" V="Next (Button One)" />
+      <val K="buttonType" V="Next" />
+      <val K="name" V="buttoneditor" />
+      <val K="widgetname" V="QPushButton" />
+   </mdata>
+</widget>
+</ksdb>

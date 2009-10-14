@@ -1,0 +1,27 @@
+<!DOCTYPE KSDB><ksdb version="0.1">
+<screen>
+   <size> 
+      <height>290</height>
+      <width>108</width> 
+   </size>
+   <backgroundfn>
+      foo.jpg
+   </backgroundfn>
+</screen>
+<widget>
+<size>
+   <height>180</height>
+   <width>250</width>
+</size>
+<location>
+   <x>220</x>
+   <y>240</y>
+</location>
+<qtwidgetname>
+QLineInput
+</qtwidgetname>
+<metadata>
+</metadata>
+</widget>
+</KSDB>
+

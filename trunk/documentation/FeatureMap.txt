@@ -1,0 +1,53 @@
+ModelMaker Feature Map
+Charles Shapiro
+14 Oct 2009
+
+-- B00gs
+
+   No way to change db params on editview after first editing a table.
+   Expanding the size of a linedit field doesn't turn it into a textedit field.
+   No "Are you Sure?" on quit with dirty screen in editview
+   No tab order on editview
+   No order by on searches of multiple fields
+   Need "write" button?
+   Edit screen covers screenmaker on modelmaker
+   No help text anywhere
+   
+
+-- Added Features
+
+  "Required" checkbox on data input fields
+  Ability to control field FG/BG colors
+  Typefaces in labels and edit fields
+  Center label text in drawn label space
+  Make  text edit fields read-only and place field name in text area
+  Handle sort-by and select options
+  Check version number on files read from disk
+  User-programmable tab order
+ 
+-- Added Options
+
+  "selected" color on screenmaker
+  Draw color on screenmaker
+  BG color on screenmaker (save to outfile?)
+  Size/shape of screenmaker screen
+  Grid cell size (need to calculate cells per character)
+  Grid Cell markings (dots at corners?)
+  
+-- Added Widgets
+
+   Line widget
+   Frame widget
+   Number spinbox widget
+   Picklist widget
+   Combobox widget
+   Picklist from database widget
+   Combobox from database widget
+
+-- Added Programs
+
+   Print View using screenmaker widget
+   Browse View (readonly editview) 
+	  OnClick option?
+   
+

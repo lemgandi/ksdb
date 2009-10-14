@@ -1,0 +1,33 @@
+Building ksdb
+
+
+This is a fairly straight-up QT 3.3 application. You will need a QT
+3.3 development toolchain loaded on your machine. On Ubuntu, this is
+in the packages libqt3-mt-dev, qt3-dev-tools, and libqt3-headers.  
+If you are planning to actually develop, you will probably need the
+qt3 designer ( "qt3-designer" on ubuntu). All of these are necessary
+to build KDE 3 as well, of course.
+
+To build the application in each of the source directories, find the
+".pro" file and use qmake. To build the screenmaker test, for example:
+
+cd screenmaker
+qmake -o Makefile screenmaker.pro
+make
+
+Should result in a working "./screenmaker" application.
+
+The qt3 designer uses paths from the root to name its project files,
+so you will have to edit editview/editview.pro and
+modelmaker/modelmaker.pro in order to get those projects to build
+correctly.  You can easily change the paths there to the correct paths
+with your favorite text editor by globally changing "/home/devel/ksdb"
+to ".." . 
+
+Have Fun.
+
+Charles Shapiro 
+14 Oct 2009
+
+
+

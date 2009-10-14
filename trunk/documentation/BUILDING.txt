@@ -1,12 +1,15 @@
 Building ksdb
 
 
-This is a fairly straight-up QT 3.3 application. You will need a QT
-3.3 development toolchain loaded on your machine. On Ubuntu, this is
-in the packages libqt3-mt-dev, qt3-dev-tools, and libqt3-headers.  
-If you are planning to actually develop, you will probably need the
-qt3 designer ( "qt3-designer" on ubuntu). All of these are necessary
-to build KDE 3 as well, of course.
+This is a fairly straight-up QT 3.3 database application. You will
+need a QT 3.3 development toolchain loaded on your machine. On Ubuntu,
+this is in the packages libqt3-mt-dev, qt3-dev-tools, and
+libqt3-headers.  If you are planning to actually develop, you will
+probably need the qt3 designer ( "qt3-designer" on ubuntu). All of
+these are necessary to build KDE 3 as well, of course.  This project
+also uses the QT3 drivers for access to MySQL and SQLite; they're
+available on kubuntu in the packages libqt3-mt-mysql and
+libqt3-mt-sqlite .
 
 To build the application in each of the source directories, find the
 ".pro" file and use qmake. To build the screenmaker test, for example:

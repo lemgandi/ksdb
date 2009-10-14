@@ -14,12 +14,12 @@ HEADERS	+= typedefs.h \
 	wedithandler.h \
 	weditlineedithandler.h \
 	wedittextedithandler.h \
-	/home/devel/ksdb/screenmaker/screenmaker.h \
-	/home/devel/ksdb/filereader/ksdbfilereader.h \
-	/home/devel/ksdb/filereader/ksdbxmlparser.h \
-	/home/devel/ksdb/screenmaker/mockeditfield.h \
-	/home/devel/ksdb/filereader/widgethandler.h \
-	/home/devel/ksdb/filereader/wlabelhandler.h
+	../screenmaker/screenmaker.h \
+	../filereader/ksdbfilereader.h \
+	../filereader/ksdbxmlparser.h \
+	../screenmaker/mockeditfield.h \
+	../filereader/widgethandler.h \
+	../filereader/wlabelhandler.h
 
 SOURCES	+= main.cpp \
 	filesaver.cpp \
@@ -28,12 +28,12 @@ SOURCES	+= main.cpp \
 	wedithandler.cpp \
 	weditlineedithandler.cpp \
 	wedittextedithandler.cpp \
-	/home/devel/ksdb/filereader/ksdbfilereader.cpp \
-	/home/devel/ksdb/filereader/ksdbxmlparser.cpp \
-	/home/devel/ksdb/screenmaker/screenmaker.cpp \
-	/home/devel/ksdb/screenmaker/mockeditfield.cpp \
-	/home/devel/ksdb/filereader/wlabelhandler.cpp \
-	/home/devel/ksdb/filereader/widgethandler.cpp
+	../filereader/ksdbfilereader.cpp \
+	../filereader/ksdbxmlparser.cpp \
+	../screenmaker/screenmaker.cpp \
+	../screenmaker/mockeditfield.cpp \
+	../filereader/wlabelhandler.cpp \
+	../filereader/widgethandler.cpp
 
 FORMS	= mainwindow.ui \
 	fieldeditor.ui \

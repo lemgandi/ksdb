@@ -1,0 +1,65 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>blankEditor</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>blankEditor</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>600</width>
+            <height>480</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Blank</string>
+    </property>
+    <widget class="QFrame">
+        <property name="name">
+            <cstring>frame9</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>50</x>
+                <y>40</y>
+                <width>352</width>
+                <height>296</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Raised</enum>
+        </property>
+        <spacer>
+            <property name="name">
+                <cstring>spacer2</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>161</width>
+                    <height>41</height>
+                </size>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>90</x>
+                    <y>110</y>
+                    <width>161</width>
+                    <height>41</height>
+                </rect>
+            </property>
+        </spacer>
+    </widget>
+</widget>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

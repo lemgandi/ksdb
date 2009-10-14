@@ -1,0 +1,227 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>settingsForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>settingsForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>578</width>
+            <height>634</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Settings</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QFrame">
+            <property name="name">
+                <cstring>frame5</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Raised</enum>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QFrame">
+                    <property name="name">
+                        <cstring>frame6</cstring>
+                    </property>
+                    <property name="frameShape">
+                        <enum>StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>Raised</enum>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabel2</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Table Name:</string>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>lineEdiTableName</cstring>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QFrame">
+                    <property name="name">
+                        <cstring>frame7_3</cstring>
+                    </property>
+                    <property name="frameShape">
+                        <enum>StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>Raised</enum>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabel1_2</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Database Name</string>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>lineEditDBName</cstring>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QFrame">
+                    <property name="name">
+                        <cstring>frame7</cstring>
+                    </property>
+                    <property name="frameShape">
+                        <enum>StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>Raised</enum>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabel1</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Database Interface</string>
+                            </property>
+                        </widget>
+                        <widget class="QListBox">
+                            <item>
+                                <property name="text">
+                                    <string>MySQL</string>
+                                </property>
+                            </item>
+                            <item>
+                                <property name="text">
+                                    <string>SQLite</string>
+                                </property>
+                            </item>
+                            <property name="name">
+                                <cstring>ListBoxDBI</cstring>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QFrame">
+                    <property name="name">
+                        <cstring>frame7_2</cstring>
+                    </property>
+                    <property name="frameShape">
+                        <enum>StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>Raised</enum>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>writeButton</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Commit</string>
+                            </property>
+                        </widget>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>quitButton</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Quit</string>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+            </vbox>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+    <connection>
+        <sender>ListBoxDBI</sender>
+        <signal>clicked(QListBoxItem*)</signal>
+        <receiver>settingsForm</receiver>
+        <slot>dbiSelected(QListBoxItem*)</slot>
+    </connection>
+    <connection>
+        <sender>lineEdiTableName</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>settingsForm</receiver>
+        <slot>tableNameChanged(const QString&amp;)</slot>
+    </connection>
+    <connection>
+        <sender>writeButton</sender>
+        <signal>clicked()</signal>
+        <receiver>settingsForm</receiver>
+        <slot>commitPressed()</slot>
+    </connection>
+    <connection>
+        <sender>quitButton</sender>
+        <signal>clicked()</signal>
+        <receiver>settingsForm</receiver>
+        <slot>reject()</slot>
+    </connection>
+    <connection>
+        <sender>lineEditDBName</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>settingsForm</receiver>
+        <slot>dbNameChanged(const QString&amp;)</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="global" impldecl="in implementation">qmessagebox.h</include>
+    <include location="local" impldecl="in implementation">settingsform.ui.h</include>
+</includes>
+<variables>
+    <variable>QString tableName;</variable>
+    <variable>QString dbiName;</variable>
+    <variable>QString databaseName;</variable>
+</variables>
+<signals>
+    <signal>newDBParams(const QString &amp;, const QString &amp;, const QString &amp;)</signal>
+</signals>
+<slots>
+    <slot>tableNameChanged( const QString &amp; tn )</slot>
+    <slot>dbiSelected( QListBoxItem * it )</slot>
+    <slot>commitPressed()</slot>
+    <slot>dbNameChanged( const QString &amp; newName )</slot>
+    <slot>exec()</slot>
+</slots>
+<functions>
+    <function access="protected">noTable()</function>
+    <function access="protected">noDBI()</function>
+    <function access="protected">noDBName()</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

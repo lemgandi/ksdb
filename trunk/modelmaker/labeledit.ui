@@ -1,0 +1,99 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>labelEditor</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>labelEditor</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>600</width>
+            <height>551</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Label Fields</string>
+    </property>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>labelEditBox</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>60</x>
+                <y>10</y>
+                <width>294</width>
+                <height>74</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>GroupBoxPanel</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Sunken</enum>
+        </property>
+        <property name="title">
+            <string>Field Label Fields</string>
+        </property>
+        <hbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textInputLabel</cstring>
+                </property>
+                <property name="text">
+                    <string>Label Text</string>
+                </property>
+            </widget>
+            <widget class="QLineEdit">
+                <property name="name">
+                    <cstring>labelTextEdit</cstring>
+                </property>
+            </widget>
+        </hbox>
+    </widget>
+</widget>
+<connections>
+    <connection>
+        <sender>labelTextEdit</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>labelEditor</receiver>
+        <slot>labelTextChanged(const QString&amp;)</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="global" impldecl="in declaration">qstring.h</include>
+    <include location="global" impldecl="in declaration">qlabel.h</include>
+    <include location="global" impldecl="in declaration">qmap.h</include>
+    <include location="local" impldecl="in declaration">typedefs.h</include>
+    <include location="local" impldecl="in implementation">wlabelhandler.h</include>
+    <include location="local" impldecl="in implementation">labeledit.ui.h</include>
+</includes>
+<forwards>
+    <forward>class screenMaker;</forward>
+</forwards>
+<variables>
+    <variable>const QWidget * templateWidget;</variable>
+    <variable access="private">QString currentTextField;</variable>
+    <variable access="private">fieldVals fields;</variable>
+</variables>
+<signals>
+    <signal>accepted(const fieldVals &amp;, QWidget *)</signal>
+</signals>
+<slots>
+    <slot>labelTextChanged( const QString &amp; newText )</slot>
+    <slot>query( const QString &amp; addressedName )</slot>
+    <slot>getWidgetTemplate( const QWidget * wp, const screenMaker * )</slot>
+    <slot>clearFields()</slot>
+    <slot>setData( const fieldVals &amp; widgetData )</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+    <function access="protected" returnType="QWidget *">makeNewWidget()</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

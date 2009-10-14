@@ -1,0 +1,179 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>checkboxEditor</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>checkboxEditor</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>600</width>
+            <height>480</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Checkbox</string>
+    </property>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>CheckboxFields</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>11</x>
+                <y>11</y>
+                <width>291</width>
+                <height>234</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Checkbox Fields</string>
+        </property>
+        <vbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="QFrame">
+                <property name="name">
+                    <cstring>frame11</cstring>
+                </property>
+                <property name="frameShape">
+                    <enum>StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Raised</enum>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Name</string>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit">
+                        <property name="name">
+                            <cstring>nameEditField</cstring>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QFrame">
+                <property name="name">
+                    <cstring>frame4</cstring>
+                </property>
+                <property name="frameShape">
+                    <enum>StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Raised</enum>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>legendLabel</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Legend</string>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit">
+                        <property name="name">
+                            <cstring>legendEdit</cstring>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QButtonGroup">
+                <property name="name">
+                    <cstring>initialValuesGroup</cstring>
+                </property>
+                <property name="title">
+                    <string>Initial Value</string>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QCheckBox">
+                        <property name="name">
+                            <cstring>checkBoxState</cstring>
+                        </property>
+                        <property name="text">
+                            <string>(check for ON)</string>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+        </vbox>
+    </widget>
+</widget>
+<connections>
+    <connection>
+        <sender>nameEditField</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>checkboxEditor</receiver>
+        <slot>labelTextChanged(const QString&amp;)</slot>
+    </connection>
+    <connection>
+        <sender>checkBoxState</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>checkboxEditor</receiver>
+        <slot>checkboxToggled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>legendEdit</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>checkboxEditor</receiver>
+        <slot>legendEditChanged(const QString&amp;)</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="local" impldecl="in declaration">typedefs.h</include>
+    <include location="global" impldecl="in implementation">qwidget.h</include>
+    <include location="global" impldecl="in implementation">qcheckbox.h</include>
+    <include location="local" impldecl="in implementation">typedefs.h</include>
+    <include location="local" impldecl="in implementation">screenmaker.h</include>
+    <include location="local" impldecl="in implementation">mockeditfield.h</include>
+    <include location="local" impldecl="in implementation">weditcheckboxhandler.h</include>
+    <include location="local" impldecl="in implementation">checkboxeditor.ui.h</include>
+</includes>
+<forwards>
+    <forward>class QWidget;</forward>
+    <forward>class screenMaker;</forward>
+</forwards>
+<variables>
+    <variable access="private">const QWidget *widgetTemplate;</variable>
+    <variable access="private">QString labelText;</variable>
+    <variable access="private">bool initialValue;</variable>
+    <variable access="private">fieldVals fields;</variable>
+    <variable access="private">QString legendText;</variable>
+    <variable access="private">const screenMaker *screenmakerWidget;</variable>
+</variables>
+<signals>
+    <signal>accepted(const fieldVals &amp;,QWidget *)</signal>
+</signals>
+<slots>
+    <slot>labelTextChanged( const QString &amp; newLabel )</slot>
+    <slot>legendEditChanged( const QString &amp; t )</slot>
+    <slot>checkboxToggled( bool toggleState )</slot>
+    <slot>query( const QString &amp; addrName )</slot>
+    <slot>getWidgetTemplate( const QWidget * w, const screenMaker * s )</slot>
+    <slot>clearFields()</slot>
+    <slot>setData( const fieldVals &amp; widgetData )</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+    <function access="protected" returnType="QWidget *">makeNewWidget()</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

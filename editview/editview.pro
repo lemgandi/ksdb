@@ -5,14 +5,14 @@ CONFIG	+= qt warn_on release
 
 unix:INCLUDEPATH	+= ../filereader ../modelmaker:../datainterface ../filereader ../modelmaker ../database ../filereader
 
-HEADERS	+= /home/devel/ksdb/filereader/widgethandler.h \
-	/home/devel/ksdb/filereader/ksdbfilereader.h \
-	/home/devel/ksdb/filereader/ksdbxmlparser.h \
-	/home/devel/ksdb/filereader/wbuttonhandler.h \
-	/home/devel/ksdb/filereader/wcheckboxhandler.h \
-	/home/devel/ksdb/filereader/wlabelhandler.h \
-	/home/devel/ksdb/filereader/wlineedithandler.h \
-	/home/devel/ksdb/filereader/wtextedithandler.h \
+HEADERS	+= ../filereader/widgethandler.h \
+	../filereader/ksdbfilereader.h \
+	../filereader/ksdbxmlparser.h \
+	../filereader/wbuttonhandler.h \
+	../filereader/wcheckboxhandler.h \
+	../filereader/wlabelhandler.h \
+	../filereader/wlineedithandler.h \
+	../filereader/wtextedithandler.h \
 	winputhandler.h \
 	wlineeditinputhandler.h \
 	wtexteditinputhandler.h \
@@ -23,16 +23,16 @@ HEADERS	+= /home/devel/ksdb/filereader/widgethandler.h \
 	winputcheckboxmaker.h \
 	winputbuttonmaker.h \
 	wbuttoninputhandler.h \
-	/home/devel/ksdb/database/datainterface.h
+	../database/datainterface.h
 
-SOURCES	+= /home/devel/ksdb/filereader/widgethandler.cpp \
-	/home/devel/ksdb/filereader/ksdbfilereader.cpp \
-	/home/devel/ksdb/filereader/ksdbxmlparser.cpp \
-	/home/devel/ksdb/filereader/wbuttonhandler.cpp \
-	/home/devel/ksdb/filereader/wcheckboxhandler.cpp \
-	/home/devel/ksdb/filereader/wlabelhandler.cpp \
-	/home/devel/ksdb/filereader/wlineedithandler.cpp \
-	/home/devel/ksdb/filereader/wtextedithandler.cpp \
+SOURCES	+= ../filereader/widgethandler.cpp \
+	../filereader/ksdbfilereader.cpp \
+	../filereader/ksdbxmlparser.cpp \
+	../filereader/wbuttonhandler.cpp \
+	../filereader/wcheckboxhandler.cpp \
+	../filereader/wlabelhandler.cpp \
+	../filereader/wlineedithandler.cpp \
+	../filereader/wtextedithandler.cpp \
 	main.cpp \
 	winputhandler.cpp \
 	wlineeditinputhandler.cpp \
@@ -44,7 +44,7 @@ SOURCES	+= /home/devel/ksdb/filereader/widgethandler.cpp \
 	winputcheckboxmaker.cpp \
 	winputbuttonmaker.cpp \
 	wbuttoninputhandler.cpp \
-	/home/devel/ksdb/database/datainterface.cpp
+	../database/datainterface.cpp
 
 FORMS	= mainwindow.ui \
 	settingsform.ui

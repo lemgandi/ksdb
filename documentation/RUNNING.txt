@@ -1,0 +1,28 @@
+Running ksdb
+
+This application currently consists of two programs: modelmaker and
+editview. Every other binary executable is a unit test. First, build
+the programs in the "editview/" and "modelmaker/" directories (see
+"BUILDING.txt" for hints on how to do this).
+
+modelmaker
+
+Run the "modelmaker" executable from an X terminal or a desktop icon.
+Paint regions on the application screen by moving the mouse while
+holding down the mouse button, then specify what they are by filling
+out the forms. Be sure to include at least a "Prev" and a "Next"
+button on your screen.  Write a file containing your painted screen
+from the File menu by selecting "Save".
+
+editview
+
+Run the"editview" executable from an X terminal or a desktop icon.
+Fill out the database name, table name, and interface type on the form
+which comes up the first time you run "editview" with that file.  You
+can now fill out the widgets on the entry screen you have created. The
+data from those widgets will go into the table behind the screen when
+you bonk the "Prev" or "Next" buttons.  
+
+Charles Shapiro 
+14 Oct 2009
+

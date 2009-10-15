@@ -7,9 +7,11 @@ Charles Shapiro
    No way to change db params on editview after first editing a table.
    Expanding the size of a linedit field doesn't turn it into a textedit field.
    No "Are you Sure?" on quit with dirty screen in editview
+   DB fieldnames should have spaces replaced with _
    No tab order on editview
    No order by on searches of multiple fields
    Need "write" button?
+   Need "Clear" button.   
    Edit screen covers screenmaker on modelmaker
    No help text anywhere
    

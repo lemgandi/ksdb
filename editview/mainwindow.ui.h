@@ -266,7 +266,7 @@ void mainwindow::Search()
    else
       clearScreen();
 
-   qDebug("currentData[\"ID\"]=%s",(const char *)currentData["ID"]);
+   qDebug("currentData[\"_ID\"]=%s",(const char *)currentData["_ID"]);
 }
 
 
@@ -383,7 +383,7 @@ void mainwindow::screenToDatabase()
     if(screenIsDirty())
     {
 
-	if(currentData.contains("ID") )	
+	if(currentData.contains("_ID") )	
 	{
 	   screenToDBFmt(currentData,FALSE);
 	   myDatabaseInterface->updateRecord(currentData);

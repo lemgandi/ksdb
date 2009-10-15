@@ -298,7 +298,7 @@ void dataInterface::makeNewCursor()
 
    delete currentQ; // Should always be either null (after create) or valid.
    currentQ=new QSqlCursor(tableName,TRUE,currentDB);
-   currentQ->setPrimaryIndex(currentQ->index("ID"));
+   currentQ->setPrimaryIndex(currentQ->index("_ID"));
 }
 //
 // Retrieve the next/prev/first/last record from the db
@@ -391,10 +391,10 @@ const colValues & colParams)
 
       //OUCH! Incompatible SQL in sqlite driver!
       if("QSQLITE" == getDBType())
-	 tableCmd= QString("create table %1 (ID integer primary key")
+	 tableCmd= QString("create table %1 (_ID integer primary key")
           .arg(tableName);
       else
-	 tableCmd = QString("create table %1 (ID serial").arg(tableName);
+	 tableCmd = QString("create table %1 (_ID serial").arg(tableName);
 
       QString colSpec;
       colValues::ConstIterator it;
@@ -422,7 +422,7 @@ void dataInterface::updateRecord(const colValues &upData,bool *retVal)
 {
    bool status=TRUE;
    QSqlCursor updateCursor(tableName,TRUE,currentDB);
-   QString selectStr=QString("ID=")+upData["ID"];
+   QString selectStr=QString("_ID=")+upData["_ID"];
    updateCursor.select(selectStr);
    if(updateCursor.first())
    {
@@ -430,7 +430,7 @@ void dataInterface::updateRecord(const colValues &upData,bool *retVal)
       colValues::ConstIterator iter;
       for(iter=upData.constBegin();iter != upData.constEnd();++iter)
       {
-	 if(iter.key() != "ID") 
+	 if(iter.key() != "_ID") 
 	 {
 	    qDebug("Set editBuf (%s,%s)",(const char *)iter.key(),
 		   (const char *)iter.data());

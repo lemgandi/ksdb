@@ -14,7 +14,7 @@ Charles Shapiro
    Need "Clear" button.   
    Edit screen covers screenmaker on modelmaker
    No help text anywhere
-   
+   Build should support SQLite 3. not SQlite 2 
 
 -- Added Features
 

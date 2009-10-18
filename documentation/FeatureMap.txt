@@ -1,6 +1,9 @@
 ModelMaker Feature Map
 Charles Shapiro
-14 Oct 2009
+18 Oct 2009
+
+See http://code.google.com/p/ksdb/issues/list for an up-to-date version of this
+file.
 
 -- B00gs
 

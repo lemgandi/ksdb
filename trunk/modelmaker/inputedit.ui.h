@@ -31,6 +31,9 @@
 void inputEditor::init()
 {
     wTemplate=0;
+    QRegExpValidator *myValidator= new QRegExpValidator(QRegExp("\\w+"),fieldNameEdit,"fieldnamevalidator");
+    
+    fieldNameEdit->setValidator(myValidator);
 }
 
 void inputEditor::nameFieldChanged( const QString & newFieldNameData )

@@ -71,6 +71,7 @@
     <include location="local" impldecl="in implementation">screenmaker.h</include>
     <include location="local" impldecl="in implementation">weditlineedithandler.h</include>
     <include location="local" impldecl="in implementation">wedittextedithandler.h</include>
+    <include location="global" impldecl="in implementation">qvalidator.h</include>
     <include location="local" impldecl="in implementation">inputedit.ui.h</include>
 </includes>
 <forwards>

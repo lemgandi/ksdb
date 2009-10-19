@@ -144,6 +144,7 @@
     <include location="local" impldecl="in implementation">screenmaker.h</include>
     <include location="local" impldecl="in implementation">mockeditfield.h</include>
     <include location="local" impldecl="in implementation">weditcheckboxhandler.h</include>
+    <include location="global" impldecl="in implementation">qvalidator.h</include>
     <include location="local" impldecl="in implementation">checkboxeditor.ui.h</include>
 </includes>
 <forwards>

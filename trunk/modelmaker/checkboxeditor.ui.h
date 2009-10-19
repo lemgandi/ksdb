@@ -38,6 +38,8 @@ void checkboxEditor::init()
 {
     widgetTemplate=0;
     initialValue=FALSE;
+    QRegExpValidator * tNameValidator = new QRegExpValidator(QRegExp("\\w+"),nameEditField,"tableNameValidator");
+    nameEditField->setValidator(tNameValidator);
 }
 void checkboxEditor::labelTextChanged( const QString & newLabel)
 {

@@ -23,15 +23,9 @@ void settingsForm::tableNameChanged( const QString & tn )
 //
 void settingsForm::dbiSelected( QListBoxItem *it)
 {
+
     if(it)
-    {
-	QString ltext=it->text();
-	if(ltext == "MySQL")
-	    dbiName="QMYSQL3";
-	else if(ltext == "SQLite")
-	    dbiName="QSQLITE";
-    }
-    
+       dbiName=it->text();    
 }
 
 void settingsForm::commitPressed()
@@ -85,4 +79,16 @@ void settingsForm::exec()
     tableName=(const char *)0;
     dbiName=(const char *)0;
     QDialog::exec();
+}
+
+
+void settingsForm::changeValues( QString tn, QString dbn, QString dbin)
+{
+   // tableName=tn;
+   //   databaseName=dbn;
+   // dbiName=dbin;
+   lineEdiTableName->setText(tn);
+   lineEditDBName->setText(dbn);
+   qDebug("dbin: %s",(const char *)dbin);
+   ListBoxDBI->setSelected(ListBoxDBI->findItem(dbin),TRUE);
 }

@@ -35,6 +35,7 @@
     </property>
     <item text="&amp;File" name="fileMenu">
         <action name="fileOpenAction"/>
+        <action name="Params"/>
         <separator/>
         <separator/>
         <action name="fileExitAction"/>
@@ -310,6 +311,28 @@
             <string></string>
         </property>
     </action>
+    <action>
+        <property name="name">
+            <cstring>fileParamsAction</cstring>
+        </property>
+        <property name="text">
+            <string>Params</string>
+        </property>
+        <property name="menuText">
+            <string>Params</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>Params</cstring>
+        </property>
+        <property name="text">
+            <string>Params</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Params</string>
+        </property>
+    </action>
 </actions>
 <connections>
     <connection>
@@ -378,6 +401,12 @@
         <receiver>mainwindow</receiver>
         <slot>helpAbout()</slot>
     </connection>
+    <connection>
+        <sender>Params</sender>
+        <signal>activated()</signal>
+        <receiver>mainwindow</receiver>
+        <slot>fileParams()</slot>
+    </connection>
 </connections>
 <includes>
     <include location="local" impldecl="in implementation">ksdbfilereader.h</include>
@@ -392,11 +421,12 @@
     <include location="local" impldecl="in implementation">winputtexteditmaker.h</include>
     <include location="local" impldecl="in implementation">winputcheckboxmaker.h</include>
     <include location="local" impldecl="in implementation">winputbuttonmaker.h</include>
-    <include location="global" impldecl="in implementation">qsettings.h</include>
-    <include location="local" impldecl="in implementation">settingsform.h</include>
+    <include location="global" impldecl="in implementation">qfileinfo.h</include>
     <include location="local" impldecl="in declaration">typedefs.h</include>
     <include location="local" impldecl="in declaration">winputhandler.h</include>
     <include location="local" impldecl="in declaration">datainterface.h</include>
+    <include location="local" impldecl="in declaration">settingsform.h</include>
+    <include location="global" impldecl="in declaration">qsettings.h</include>
     <include location="local" impldecl="in implementation">mainwindow.ui.h</include>
 </includes>
 <variables>
@@ -405,10 +435,10 @@
     <variable>inputHandlerList inputDataHandlers;</variable>
     <variable>QString currentDBI;</variable>
     <variable>QString currentTableName;</variable>
-    <variable>QDialog * sForm;</variable>
     <variable>QString currentDBName;</variable>
     <variable>dataInterface *myDatabaseInterface;</variable>
     <variable>colValues currentData;</variable>
+    <variable>settingsForm *sForm;</variable>
 </variables>
 <slots>
     <slot>fileOpen()</slot>
@@ -430,11 +460,14 @@
     <slot>Quit()</slot>
     <slot>dbiParams( const QString &amp; tn, const QString &amp; dn, const QString &amp; ifn )</slot>
     <slot>clearScreen()</slot>
+    <slot>fileParams()</slot>
 </slots>
 <functions>
     <function access="private" specifier="non virtual">init()</function>
     <function access="private" specifier="non virtual">destroy()</function>
     <function access="protected">setupWidgets()</function>
+    <function access="protected">writeValsToSettings( QSettings * theSettings )</function>
+    <function access="protected">setupSettingsObject( QSettings * theSettings, QString fn )</function>
     <function access="protected" returnType="QString">getOpenFileName()</function>
     <function access="protected">dumpCurrentInputData()</function>
     <function access="protected">setupDBI()</function>

@@ -22,7 +22,8 @@ void mainwindow::init()
    myDatabaseInterface=0;
    sForm=new settingsForm(this,"SettingsForm",TRUE);
    connect(sForm,SIGNAL(newDBParams(const QString &, const QString &, const QString &)),this,SLOT(dbiParams(const QString &, const QString &, const QString &)));
-   
+
+    fileMenu->setItemEnabled(fileMenu->idAt(1),FALSE);
     inputDataHandlers.setAutoDelete(TRUE);
 }
 
@@ -83,6 +84,7 @@ void mainwindow::fileOpen()
 	 wData=myReader.getData();
 	 setupWidgets();
 	 setupDBI();
+	 fileMenu->setItemEnabled(fileMenu->idAt(1),TRUE);
       }
       else
       {
@@ -92,6 +94,21 @@ void mainwindow::fileOpen()
       }
    }
    wHandlers.clear(); // Deletes all the new s above.
+}
+//
+// Write db params to settings file.
+//
+void mainwindow::writeValsToSettings(QSettings *theSettings)
+{
+   theSettings->writeEntry(dbiEntry,currentDBI);
+   theSettings->writeEntry(tableEntry,currentTableName);
+   theSettings->writeEntry(dbNEntry,currentDBName);   
+}
+void mainwindow::setupSettingsObject(QSettings *theSettings,QString fn)
+{
+    theSettings->setPath("tomshiro.org","ksdb",QSettings::User);
+    QFileInfo QFI(fn);
+    theSettings->beginGroup(QFI.baseName(TRUE));
 }
 
 //
@@ -107,21 +124,15 @@ QString mainwindow::getOpenFileName()
     if(! retVal.isNull())
     {
 	QSettings mySettings;
-	mySettings.setPath("tomshiro.org","ksdb",
-			   QSettings::User);
-	mySettings.beginGroup(QString("/"+retVal));
+	setupSettingsObject(&mySettings,retVal);
 	currentDBI=mySettings.readEntry(dbiEntry);
 	currentTableName=mySettings.readEntry(tableEntry);
 	currentDBName=mySettings.readEntry(dbNEntry);
-	if( currentDBI.isNull() ) 
-	{	   	
+	if(currentDBI.isNull())
 	    sForm->exec();
-	    if(! currentDBI.isNull())	    
-		mySettings.writeEntry(dbiEntry,currentDBI);
-		mySettings.writeEntry(tableEntry,currentTableName);
-		mySettings.writeEntry(dbNEntry,currentDBName);
-	}	
-
+	if(! currentDBI.isNull())
+	   writeValsToSettings(&mySettings);	   
+	
     }
     if(currentDBI.isNull())
 	retVal=(const char *)0;
@@ -141,7 +152,7 @@ void mainwindow::fileExit()
 {
    if(screenIsDirty())
       dumpCurrentInputData();
-
+   delete myDatabaseInterface;
     inputDataHandlers.clear(); // Delete new ed inputhandlers.
     QApplication::exit(0);
 }
@@ -318,6 +329,9 @@ void mainwindow::setupDBI()
        if( (theVals.contains("datatype")) && (theVals.contains("fieldname")) )
 	  tableInfo[theVals["fieldname"]] = theVals["datatype"];
     }       
+    if(myDatabaseInterface)
+	delete myDatabaseInterface;
+    
     myDatabaseInterface = new dataInterface(currentDBI,currentDBName);
     myDatabaseInterface->openDB();
     myDatabaseInterface->makeSetTable(currentTableName,tableInfo);
@@ -434,4 +448,29 @@ void mainwindow::clearScreen()
       thisHandler->clear();
       ++iter;
    }
+}
+
+void mainwindow::fileParams()
+{
+    qDebug("File Params");
+    QString oldTN=currentTableName;
+    QString oldDBN=currentDBName;
+    QString oldDBI=currentDBI;
+
+    sForm->changeValues(currentTableName,currentDBName,currentDBI);
+    sForm->exec();
+    if(! currentDBI.isNull())
+    {
+	QSettings mySettings;
+	setupSettingsObject(&mySettings,currentFN);
+	writeValsToSettings(&mySettings);
+	setupDBI();
+    }
+    else
+    {
+       currentTableName=oldTN;
+       currentDBName=oldDBN;
+       currentDBI=oldDBI;
+    }
+
 }

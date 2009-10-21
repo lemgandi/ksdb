@@ -116,12 +116,12 @@
                         <widget class="QListBox">
                             <item>
                                 <property name="text">
-                                    <string>MySQL</string>
+                                    <string>QMYSQL3</string>
                                 </property>
                             </item>
                             <item>
                                 <property name="text">
-                                    <string>SQLite</string>
+                                    <string>QSQLITE</string>
                                 </property>
                             </item>
                             <property name="name">
@@ -216,6 +216,7 @@
     <slot>commitPressed()</slot>
     <slot>dbNameChanged( const QString &amp; newName )</slot>
     <slot>exec()</slot>
+    <slot>changeValues( QString tn, QString dbn, QString dbin )</slot>
 </slots>
 <functions>
     <function access="protected">noTable()</function>

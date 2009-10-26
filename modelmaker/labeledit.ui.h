@@ -82,3 +82,10 @@ void labelEditor::setData( const fieldVals & widgetData)
       labelTextEdit->setText(widgetData["labelText"]);
    }
 }
+//
+// Currently no response to widget size change.
+//
+void labelEditor::sizeChange( QWidget *, fieldVals * )
+{
+
+}

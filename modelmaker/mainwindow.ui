@@ -598,6 +598,7 @@
     <signal>moveWidget(QWidget *)</signal>
     <signal>destroyWidget(QWidget *)</signal>
     <signal>editWidgetData(const fieldVals &amp;)</signal>
+    <signal>widgetSizeChanged(QWidget *,fieldVals *);</signal>
 </signals>
 <slots>
     <slot>fileNew()</slot>
@@ -618,7 +619,7 @@
     <slot>newBackground()</slot>
     <slot access="protected">makeNewWidget( QWidget * w )</slot>
     <slot>widgetSelected( QWidget * w )</slot>
-    <slot>widgetResized( QWidget * )</slot>
+    <slot>widgetResized( QWidget * theW )</slot>
     <slot>widgetMoved( QWidget * )</slot>
     <slot>editorValues( const fieldVals &amp; newVals, QWidget * newWidget )</slot>
     <slot access="protected">removeCurrentWidget()</slot>

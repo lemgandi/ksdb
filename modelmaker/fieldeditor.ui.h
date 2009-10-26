@@ -61,6 +61,7 @@ void fieldEditor::init()
         connect(this,SIGNAL(publishReplaceWidget(const QWidget *,const screenMaker *)),buttonFields,SLOT(getWidgetTemplate(const QWidget *,const screenMaker *)));
         connect(this,SIGNAL(setEditData(const fieldVals &)),buttonFields,SLOT(setData(const fieldVals &)));
         connect(this,SIGNAL(valueQuery(const QString &)),buttonFields,SLOT(query(const QString &)));
+	connect(this,SIGNAL(widgetSizeChanged(QWidget *,fieldVals *)),buttonFields,SLOT(sizeChange(QWidget *,fieldVals *)));
     connect(buttonFields,SIGNAL(accepted(const  fieldVals &,QWidget *)),this,SLOT(editorValues(const fieldVals &,QWidget *)));
     
     
@@ -69,7 +70,10 @@ void fieldEditor::init()
     connect(this,SIGNAL(valueQuery(const QString &)),inputFields,SLOT(query(const QString &)));
     connect(this,SIGNAL(publishReplaceWidget(const QWidget *,const screenMaker *)),inputFields,SLOT(getWidgetTemplate(const QWidget *,const screenMaker *)));
         connect(this,SIGNAL(setEditData(const fieldVals &)),inputFields,SLOT(setData(const fieldVals &)));
+	connect(this,SIGNAL(widgetSizeChanged(QWidget *,fieldVals *)),inputFields,SLOT(sizeChange(QWidget *,fieldVals *)));
     connect(inputFields,SIGNAL(accepted(const fieldVals &,QWidget *)),this,SLOT(editorValues(const fieldVals &,QWidget *)));
+    // Special hack so that inputfields can respond to sizeChange properly.
+    connect(inputFields,SIGNAL(unconditionally_accepted(const fieldVals &,QWidget *)),this,SIGNAL(collectedValues(const fieldVals &,QWidget *)));
     fieldEditorStack->addWidget(inputFields);
 
     
@@ -79,6 +83,7 @@ void fieldEditor::init()
     connect(this,SIGNAL(valueQuery(const QString &)),labelFields,SLOT(query(const QString &)));
         connect(this,SIGNAL(publishReplaceWidget(const QWidget *,const screenMaker *)),labelFields,SLOT(getWidgetTemplate(const QWidget *,const screenMaker *)));
     connect(this,SIGNAL(setEditData(const fieldVals &)),labelFields,SLOT(setData(const fieldVals &)));
+	connect(this,SIGNAL(widgetSizeChanged(QWidget *,fieldVals *)),labelFields,SLOT(sizeChange(QWidget *,fieldVals *)));
     connect(labelFields,SIGNAL(accepted(const fieldVals &,QWidget *)),this,SLOT(editorValues(const fieldVals &,QWidget *)));
 
     checkboxEditor *checkboxFields=new checkboxEditor(0,"checkboxeditor");
@@ -87,6 +92,7 @@ void fieldEditor::init()
     connect(this,SIGNAL(valueQuery(const QString &)),checkboxFields,SLOT(query(const QString &)));
         connect(this,SIGNAL(publishReplaceWidget(const QWidget *,const screenMaker *)),checkboxFields,SLOT(getWidgetTemplate(const QWidget *,const screenMaker *)));
     connect(this,SIGNAL(setEditData(const fieldVals &)),checkboxFields,SLOT(setData(const fieldVals &)));
+	connect(this,SIGNAL(widgetSizeChanged(QWidget *,fieldVals *)),checkboxFields,SLOT(sizeChange(QWidget *,fieldVals *)));
     connect(checkboxFields,SIGNAL(accepted(const fieldVals &,QWidget *)),this,SLOT(editorValues(const fieldVals &,QWidget *)));
  
     // Raise the "blank" widget.

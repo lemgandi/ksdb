@@ -85,6 +85,7 @@
 </variables>
 <signals>
     <signal>accepted(const fieldVals &amp;,QWidget *)</signal>
+    <signal>unconditionally_accepted(const fieldVals &amp;,QWidget *);</signal>
 </signals>
 <slots>
     <slot>nameFieldChanged( const QString &amp; newFieldNameData )</slot>
@@ -92,6 +93,7 @@
     <slot>getWidgetTemplate( const QWidget * wp, const screenMaker * s )</slot>
     <slot>clearFields()</slot>
     <slot>setData( const fieldVals &amp; widgetData )</slot>
+    <slot>sizeChange( QWidget * w, fieldVals * wd )</slot>
 </slots>
 <functions>
     <function access="private" specifier="non virtual">init()</function>

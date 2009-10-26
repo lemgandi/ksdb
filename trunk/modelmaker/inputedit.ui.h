@@ -1,4 +1,4 @@
- /****************************************************************************
+/****************************************************************************
 ** ui.h extension file, included from the uic-generated form implementation.
 **
 ** If you want to add, delete, or rename functions or slots, use
@@ -94,6 +94,8 @@ QWidget * inputEditor::makeNewWidget(QString &widgetType)
 	widgetType=QString("QLineEdit");
     }
     handlerP->setScreenMaker(scrMakerWidget);
+    qDebug("scrMakerWidget: %p fields[\"name\"]: %s wTemplate->height(): %d",
+	   scrMakerWidget,(const char *)fields["name"],wTemplate->height() );
     retVal=handlerP->makeWidget(fields["name"],wTemplate->size(),wTemplate->pos(),fields);
     return retVal;
 }
@@ -113,4 +115,25 @@ void inputEditor::setData( const fieldVals &widgetData )
 
    if (myName == widgetData["name"])   
       fieldNameEdit->setText(widgetData["fieldname"]);   
+}
+
+//
+// Respond to signal that field size has changed -- make sure that
+// widget is correct type (QLineEdit for single-line field, QTextEdit for
+// multi-line fields.
+void inputEditor::sizeChange( QWidget *w, fieldVals *wd )
+{
+   qDebug("inputeditor::sizeChange fieldname=%s",(const char *)wd->find("name").data());
+ QString myName=QString(name());
+   if(myName == wd->find("name").data())
+   {
+      qDebug("inputedit: sizeChange()");
+      wTemplate=w;
+      fields=*wd;
+      QString wType;
+      QWidget * theNewWidget = makeNewWidget(wType);
+      qDebug("inputedit:sizeChange:new type: %s",(const char *)wType);
+      wd->replace("widgetname",wType);
+      emit unconditionally_accepted(*wd,theNewWidget);
+   }
 }

@@ -107,3 +107,9 @@ void buttonEditor::setData( const fieldVals & widgetData )
       buttonLegendEdit->setText(widgetData["buttonLegend"]);
    }
 }
+
+
+void buttonEditor::sizeChange( QWidget *, fieldVals * )
+{
+
+}

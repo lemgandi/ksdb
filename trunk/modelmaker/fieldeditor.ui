@@ -266,6 +266,7 @@
     <signal>collectedValues(const fieldVals &amp;,QWidget *)</signal>
     <signal>publishReplaceWidget(const QWidget *,const screenMaker *)</signal>
     <signal>setEditData(const fieldVals &amp;)</signal>
+    <signal>widgetSizeChanged(QWidget *,fieldVals *);</signal>
 </signals>
 <slots>
     <slot>editorPicked( QListBoxItem * chosenItem )</slot>

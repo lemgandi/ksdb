@@ -36,9 +36,19 @@ void mainWindow::init()
     currentWidget=0;
     Dirty=FALSE;
     fieldEditorScreen = new fieldEditor(this,"fieldEditor");
-    connect(fieldEditorScreen,SIGNAL(collectedValues(const fieldVals &,QWidget *)),this,SLOT(editorValues(const fieldVals &,QWidget *)));
-    connect(this,SIGNAL(pushReplaceWidget(const QWidget *,const screenMaker *)),fieldEditorScreen,SLOT(setReplaceWidget(const QWidget *,const screenMaker *)));
-    connect(this,SIGNAL(editWidgetData(const fieldVals &)),fieldEditorScreen,SIGNAL(setEditData(const fieldVals &)));
+    connect(fieldEditorScreen,
+	    SIGNAL(collectedValues(const fieldVals &,QWidget *)),
+	    this,SLOT(editorValues(const fieldVals &,QWidget *)));
+
+    connect(this,
+	    SIGNAL(pushReplaceWidget(const QWidget *,const screenMaker *)),
+	    fieldEditorScreen,
+	    SLOT(setReplaceWidget(const QWidget *,const screenMaker *)));
+    connect(this,SIGNAL(editWidgetData(const fieldVals &)),
+	    fieldEditorScreen,SIGNAL(setEditData(const fieldVals &)));
+    connect(this,SIGNAL(widgetSizeChanged(QWidget *,fieldVals *)),
+	    fieldEditorScreen,
+	    SIGNAL(widgetSizeChanged(QWidget *,fieldVals *)));
     
     selectMenu=new QPopupMenu(this,"selectMenu");
     selectMenu->insertItem("re&Size",this,SLOT(resizeWidget()));
@@ -347,9 +357,20 @@ void mainWindow::widgetSelected(QWidget * w)
 // QTextEdit to QLineEdit and back on input widgets some day.
 // For now just redisplay the select menu.
 //
-void mainWindow::widgetResized(QWidget *)
+void mainWindow::widgetResized(QWidget *theW)
 {
+
+   qDebug("mainwindow:widgetResized theW->x=%d theW->y=%d",
+	  theW->x(),theW->y());
+   QWidget *oldWidgetPtr=currentWidget;
+ 
+   emit editWidgetData(wData[currentWidget]);
+   emit pushReplaceWidget(currentWidget,screenMaker3);
+
+   emit widgetSizeChanged(theW,&wData[currentWidget]);
+   wData.remove(oldWidgetPtr);
    deSelectWidget();
+   
    Dirty=TRUE;
    //   showMenu();
 }

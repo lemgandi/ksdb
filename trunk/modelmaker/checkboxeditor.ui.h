@@ -131,3 +131,10 @@ void checkboxEditor::setData(const fieldVals &widgetData)
        checkBoxState->setChecked(iVal);
     }
 }
+//
+// Currently no response to size change.
+//
+void checkboxEditor::sizeChange( QWidget *, fieldVals * )
+{
+
+}

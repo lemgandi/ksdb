@@ -170,6 +170,7 @@
     <slot>getWidgetTemplate( const QWidget * w, const screenMaker * s )</slot>
     <slot>clearFields()</slot>
     <slot>setData( const fieldVals &amp; widgetData )</slot>
+    <slot>sizeChange( QWidget *, fieldVals * )</slot>
 </slots>
 <functions>
     <function access="private" specifier="non virtual">init()</function>

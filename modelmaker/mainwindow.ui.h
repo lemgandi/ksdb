@@ -36,6 +36,7 @@ void mainWindow::init()
     currentWidget=0;
     Dirty=FALSE;
     fieldEditorScreen = new fieldEditor(this,"fieldEditor");
+    fieldEditorScreen->move(100,100);
     connect(fieldEditorScreen,
 	    SIGNAL(collectedValues(const fieldVals &,QWidget *)),
 	    this,SLOT(editorValues(const fieldVals &,QWidget *)));
@@ -65,6 +66,7 @@ void mainWindow::init()
 void mainWindow::destroy()
 {
     qDebug("mainWindow::destroy()");
+    // fileExit(); Hmm. This doesn t work right.
     dumpCurrentWidgetValues();
 }
 //

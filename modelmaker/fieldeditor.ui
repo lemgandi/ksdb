@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>627</width>
-            <height>887</height>
+            <width>668</width>
+            <height>569</height>
         </rect>
     </property>
     <property name="caption">
@@ -24,10 +24,10 @@
         </property>
         <property name="geometry">
             <rect>
-                <x>10</x>
-                <y>10</y>
-                <width>662</width>
-                <height>535</height>
+                <x>11</x>
+                <y>11</y>
+                <width>646</width>
+                <height>547</height>
             </rect>
         </property>
         <property name="frameShape">
@@ -169,23 +169,6 @@
                     <property name="name">
                         <cstring>unnamed</cstring>
                     </property>
-                    <spacer>
-                        <property name="name">
-                            <cstring>spacer1</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Horizontal</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Expanding</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>91</width>
-                                <height>20</height>
-                            </size>
-                        </property>
-                    </spacer>
                     <widget class="QPushButton">
                         <property name="name">
                             <cstring>okPushButton</cstring>

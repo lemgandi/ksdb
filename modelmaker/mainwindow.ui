@@ -630,6 +630,7 @@
     <slot>quitSelect()</slot>
     <slot>editWidget()</slot>
     <slot>menuDeleteWidget()</slot>
+    <slot>closeEvent( QCloseEvent * )</slot>
 </slots>
 <functions>
     <function access="private" specifier="non virtual">init()</function>

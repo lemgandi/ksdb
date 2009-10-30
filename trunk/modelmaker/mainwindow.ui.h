@@ -571,3 +571,10 @@ bool mainWindow::checkWidgetCollision( const QWidget *testWidget)
   }
   return retVal;
 }
+
+void mainWindow::closeEvent(QCloseEvent *)
+{
+    qDebug("Closevent");    
+    fileExit();
+}
+

@@ -305,7 +305,18 @@ void mainwindow::Last()
 void mainwindow::Quit()
 {
    qDebug("Quit");  
-   fileExit();
+   enum quitState whatAction = checkDirtyQuit();
+   switch(whatAction)
+   {
+   case SAVE:
+      screenToDatabase();
+      //NO BREAK
+   case QUIT:
+      fileExit();
+      break;
+   default: // case NOQUIT
+      break;
+   }   
 }
 
 void mainwindow::dbiParams( const QString &tn, const QString &dn, const QString &ifn )
@@ -473,4 +484,38 @@ void mainwindow::fileParams()
        currentDBI=oldDBI;
     }
 
+}
+
+//
+// Decide if screen contains edited data, query user if necessary.
+//
+enum quitState mainwindow::checkDirtyQuit()
+{
+   enum quitState okToQuit=QUIT;
+   if(screenIsDirty())
+      okToQuit=SAVE;
+   if(SAVE == okToQuit)
+   {
+      int action=QMessageBox::question(this,
+      "Exit","You have unsaved changes here.",
+       "Continue Editing","Save and Exit","Quit (lose changes)");
+       switch(action) 
+       {
+       case 1:
+	  okToQuit=SAVE;
+	  break;
+       case 2:
+	  okToQuit=QUIT;
+	  break;
+       default:  // case 0 and safest assumption.
+	  okToQuit=NOQUIT;
+       }
+   }
+   return okToQuit;
+}
+
+
+void mainwindow::closeEvent( QCloseEvent * )
+{
+    Quit();
 }

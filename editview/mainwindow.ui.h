@@ -27,15 +27,6 @@ void mainwindow::init()
     inputDataHandlers.setAutoDelete(TRUE);
 }
 
-//
-// At exit, delete dbi
-//
-void mainwindow::destroy()
-{
-    delete myDatabaseInterface;
-    
-}
-//
 // Show the widgets we have read out of our file on the screen 
 // by making them children of the groupbox.
 //
@@ -48,8 +39,15 @@ void mainwindow::setupWidgets()
     {
 	wP=iter.key();
 	wP->reparent(WGroupBox,wP->pos(),TRUE);
+	tabList.inSort(wP);
     }
+    //    tabList.sort();
+    setFieldTabOrder();
+    wP=tabList.getFirst();
+    if(wP)
+       wP->setFocus();
 }
+
 
 //
 // Handle fileOpen signal.
@@ -518,4 +516,21 @@ enum quitState mainwindow::checkDirtyQuit()
 void mainwindow::closeEvent( QCloseEvent * )
 {
     Quit();
+}
+
+
+void mainwindow::setFieldTabOrder()
+{
+    QPtrListIterator<QWidget> iter(tabList);
+    QWidget *prev=iter.current();
+    QWidget *next;
+    ++iter;
+    while( (next=iter.current()) != 0)
+    {
+       qDebug("Set Tab Order [%d %d]->[%d %d]",prev->x(),prev->y(),next->x(),next->y());
+	setTabOrder(prev,next);
+	prev=next;
+	++iter;
+    }
+    
 }

@@ -23,7 +23,8 @@ HEADERS	+= ../filereader/widgethandler.h \
 	winputcheckboxmaker.h \
 	winputbuttonmaker.h \
 	wbuttoninputhandler.h \
-	../database/datainterface.h
+	../database/datainterface.h \
+	qwptrlist.h
 
 SOURCES	+= ../filereader/widgethandler.cpp \
 	../filereader/ksdbfilereader.cpp \
@@ -44,7 +45,8 @@ SOURCES	+= ../filereader/widgethandler.cpp \
 	winputcheckboxmaker.cpp \
 	winputbuttonmaker.cpp \
 	wbuttoninputhandler.cpp \
-	../database/datainterface.cpp
+	../database/datainterface.cpp \
+	qwptrlist.cpp
 
 FORMS	= mainwindow.ui \
 	settingsform.ui

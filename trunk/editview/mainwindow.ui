@@ -427,6 +427,7 @@
     <include location="local" impldecl="in declaration">datainterface.h</include>
     <include location="local" impldecl="in declaration">settingsform.h</include>
     <include location="global" impldecl="in declaration">qsettings.h</include>
+    <include location="local" impldecl="in declaration">qwptrlist.h</include>
     <include location="local" impldecl="in implementation">mainwindow.ui.h</include>
 </includes>
 <forwards>
@@ -442,6 +443,7 @@
     <variable>dataInterface *myDatabaseInterface;</variable>
     <variable>colValues currentData;</variable>
     <variable>settingsForm *sForm;</variable>
+    <variable>QWPtrList tabList;</variable>
 </variables>
 <slots>
     <slot>fileOpen()</slot>
@@ -468,7 +470,6 @@
 </slots>
 <functions>
     <function access="private" specifier="non virtual">init()</function>
-    <function access="private" specifier="non virtual">destroy()</function>
     <function access="protected">setupWidgets()</function>
     <function access="protected">writeValsToSettings( QSettings * theSettings )</function>
     <function access="protected">setupSettingsObject( QSettings * theSettings, QString fn )</function>
@@ -481,6 +482,7 @@
     <function access="protected">screenToDatabase()</function>
     <function access="protected">screenToDBFmt( colValues &amp; outVals, bool allVals )</function>
     <function access="protected" returnType="quitState">checkDirtyQuit()</function>
+    <function access="protected">setFieldTabOrder()</function>
 </functions>
 <pixmapinproject/>
 <layoutdefaults spacing="6" margin="11"/>

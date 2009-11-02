@@ -75,6 +75,7 @@ void checkboxEditor::query(const QString &addrName)
 	fields["legend"]=legendText;
 	fields["widgetname"]=QString("QCheckBox");
 	fields["datatype"]=QString("boolean");
+	fields["inputField"]=QString("True");
 	if (initialValue)
 	   fields["initialValue"]=QString("TRUE");
 	else

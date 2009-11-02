@@ -43,6 +43,7 @@ void buttonEditor::query( const QString &addressedName )
        fields["buttonType"]=buttonType;
        fields["buttonLegend"]=buttonLegend;
        fields["widgetname"]=QString("QPushButton");
+       fields["inputField"]=QString("True");
        QWidget *theWidget=makeNewWidget();
        emit accepted(fields,theWidget);
        clearFields();

@@ -56,6 +56,7 @@ void inputEditor::query( const QString & addressedName )
      fields["fieldname"]=currentNameField;
      QWidget *newWidget=makeNewWidget(wType);
      fields["widgetname"]=wType;
+     fields["inputField"]=QString("True");
      fields["datatype"]=QString("char(%1)").arg((newWidget->height() * newWidget->width())/(scrMakerWidget->cellHeight() * scrMakerWidget->cellWidth()) );
      emit accepted(fields,newWidget);
      clearFields();

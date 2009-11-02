@@ -483,6 +483,7 @@
     <function access="protected">screenToDBFmt( colValues &amp; outVals, bool allVals )</function>
     <function access="protected" returnType="quitState">checkDirtyQuit()</function>
     <function access="protected">setFieldTabOrder()</function>
+    <function access="protected" returnType="bool">isInputField( QWidget * )</function>
 </functions>
 <pixmapinproject/>
 <layoutdefaults spacing="6" margin="11"/>

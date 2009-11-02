@@ -39,13 +39,14 @@ void mainwindow::setupWidgets()
     {
 	wP=iter.key();
 	wP->reparent(WGroupBox,wP->pos(),TRUE);
-	tabList.inSort(wP);
+	if(isInputField(wP))
+	   tabList.inSort(wP);
     }
     //    tabList.sort();
-    setFieldTabOrder();
     wP=tabList.getFirst();
     if(wP)
        wP->setFocus();
+    setFieldTabOrder();
 }
 
 
@@ -527,10 +528,19 @@ void mainwindow::setFieldTabOrder()
     ++iter;
     while( (next=iter.current()) != 0)
     {
-       qDebug("Set Tab Order [%d %d]->[%d %d]",prev->x(),prev->y(),next->x(),next->y());
 	setTabOrder(prev,next);
 	prev=next;
 	++iter;
     }
     
+}
+
+
+bool mainwindow::isInputField( QWidget *wP )
+{
+    bool retVal=FALSE;
+    fieldVals fInfo=wData[wP];
+    if (fInfo.contains("inputField"))
+       retVal=TRUE;
+    return retVal;
 }

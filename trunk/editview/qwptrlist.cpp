@@ -36,13 +36,15 @@ int QWPtrList::compareWidgets(QWidget *a,QWidget *b)
 {
    int retVal=0;
    //   qDebug("Compare x:%d y:%d to x:%d y:%d",a->x(),a->y(),b->x(),b->y());
-   if( (a->x() < b->x()) || (a->y() < b->y()) )
+
+   if( a->y() > b->y() )
+      retVal=1;
+   else if (a->y() < b->y() )
       retVal=-1;
-   if(! retVal)
-   {
-      if( (a->x() > b->x()) || (a->y() > b->y()) )
-	 retVal=1;
-   }
+   else if (a->x() > b->x())
+      retVal=1;
+   else if (a->x() < b->x())
+      retVal=-1;
 
    return retVal;
 }

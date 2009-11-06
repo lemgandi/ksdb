@@ -12,7 +12,7 @@
 #include <qsqldatabase.h>
 #include <qsqlquery.h>
 #include <qsqlcursor.h>
-
+#include <qstringlist.h>
 
 typedef QMap<QString,QString> colValues;
 typedef QValueList<QString> colNames;
@@ -34,8 +34,12 @@ class dataInterface : public QObject
    bool setTable(QString name);
    bool makeTable(QString name, const colValues &);
    bool getARecord(colValues &,enum fetchType);
+   bool deleteARecord(QString recNum);
+   bool firstInOrder(colValues &);
 
  public slots:
+   
+   void deleteRecord(QString recNum,bool *retVal=0);
    void getRecord(colValues &,bool *retVal=0);
    void setRecord(const colValues &,bool *retVal=0);
    void appendRecord(const colValues &,bool *retVal=0);
@@ -44,6 +48,8 @@ class dataInterface : public QObject
    void getPrevRecord(colValues &,bool *retVal=0);
    void getFirstRecord(colValues &,bool *retVal=0);
    void getLastRecord(colValues &,bool *retVal=0);
+   void setOrder(const QStringList &);
+   const QStringList & getOrder();
 
    void getLastError(QString &) const;
 
@@ -55,9 +61,11 @@ class dataInterface : public QObject
    void makeNewCurrentDB(QString,QString dbn="");
    void makeNewCursor();
    bool currentRecToColValues(QSqlCursor *,colValues &);
+   QString selectOrderString(const QStringList &);
    QSqlDatabase *currentDB;
    QString dbName;
    QString tableName;
+   QStringList readOrder;
    QString lastError;
 };
 

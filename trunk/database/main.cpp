@@ -1,6 +1,10 @@
 #include <qapplication.h>
 #include <qstring.h>
 #include <qstringlist.h>
+#include <stdlib.h>
+// #include <time.h>
+
+using namespace std;
 
 #include "datainterface.h"
 
@@ -49,7 +53,7 @@ int main( int argc, char ** argv )
    QString tableName="Onest";
 
    dataInterface myIF("QMYSQL3","ksdbtest"); // This also works.
-
+   srandom(time(0));
    // dataInterface myIF("QSQLITE","./myDB.sqlite"); // This also works.
    bool retVal=myIF.openDB();
    if(retVal)
@@ -67,7 +71,9 @@ int main( int argc, char ** argv )
    {
       params.clear();
       params.insert("Name",recName);
-      params.insert("Height","175");
+      int randH=random() % 200;
+      QString hStr=QString("%1").arg(randH);
+      params.insert("Height",hStr);
       params.insert("Weight","64");
       params.insert("Funny","False");
       myIF.appendRecord(params,&retVal);
@@ -76,9 +82,15 @@ int main( int argc, char ** argv )
       myIF.appendRecord(params,&retVal);
       params["Name"]="Harpo Marx";
       params["Funny"]="1";
+      randH=random() % 200;
+      hStr=QString("%1").arg(randH);
+      params["Height"]=hStr;
+
       myIF.appendRecord(params,&retVal);
       params["Name"]="Jellyroll Morton";
-      params["Height"]="130";
+      randH=random() % 200;
+      hStr=QString("%1").arg(randH);
+      params["Height"]=hStr;
       params["Weight"]="85";
       myIF.appendRecord(params,&retVal);
    }
@@ -114,5 +126,20 @@ int main( int argc, char ** argv )
       myIF.updateRecord(params,&retVal);
       if(! retVal)
 	 reportError("Update",myIF);
+   }
+   if(retVal)   
+      retVal=myIF.deleteARecord("4");         
+   if(retVal)
+   {
+      colValues theRec;
+
+      QStringList myList;
+      myList.append("Name");
+      myList.append("Height");
+      myIF.setOrder(myList);
+      retVal=myIF.firstInOrder(theRec);
+      printRecord("First name,height",theRec);
+      myIF.getNextRecord(theRec,&retVal);
+      printRecord("Twost name,height",theRec);
    }
 }

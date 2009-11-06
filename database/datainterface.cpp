@@ -43,7 +43,39 @@ void dataInterface::closeDB()
    if(currentDB)
       currentDB->close();
 }
+void dataInterface::setOrder(const QStringList &newOrder)
+{
+   readOrder=newOrder;
+   if(currentQ)
+      currentQ->setSort(QSqlIndex::fromStringList(readOrder,currentQ));
+}
+//
+// Set "order by" string appended to search.
+//
+QString dataInterface::selectOrderString(const QStringList &fieldNames)
+{
+   QString retVal;
+   if(fieldNames.count())
+   {
+      retVal="order by ";
+      QStringList::ConstIterator iter;
+      for(iter=fieldNames.constBegin();iter != fieldNames.constEnd();++iter)
+      {
+	 retVal.append(*iter);
+	 retVal.append(",");
+      }
+      retVal.setLength(retVal.length()-1); // Remove extra comma
+   }
+   return retVal;
+}
 
+// 
+// Get the order string. ("order by...")
+//
+const QStringList & dataInterface::getOrder()
+{
+   return readOrder;
+}
 //
 // What type of db are we on?
 //
@@ -162,6 +194,8 @@ void dataInterface::getRecord(colValues &qVals,bool *retP)
       if(selectStr.length() > 1)
 	 selectStr.append (" and ");
       selectStr.append(selectItemStr);
+      if(readOrder.count())
+	 selectStr.append(selectOrderString(readOrder));
    }
    selectStr.append(")");
    qDebug("selectStr: %s",(const char *)selectStr);
@@ -415,6 +449,54 @@ const colValues & colParams)
    }
    return retVal;
 }
+
+void dataInterface::deleteRecord(QString recNum,bool *retValP)
+{
+   bool retVal=deleteARecord(recNum);
+   if(retValP)
+      *retValP=retVal;
+}
+//
+// Get the first record without killing find, order.
+//
+bool dataInterface::firstInOrder(colValues &outRec)
+{
+   bool retVal=isValid();
+   if(retVal)   
+   {
+      currentQ->select();
+      retVal=currentQ->first();
+   }
+   if(retVal)
+      retVal=currentRecToColValues(currentQ,outRec);
+   else
+      lastError=currentDB->lastError().text();
+
+   return retVal;
+}
+//
+// Delete a record from the database (probably by ID)
+//
+bool dataInterface::deleteARecord(QString recNum)
+{
+   bool status=TRUE;
+   if (! isValid())
+      status=FALSE;
+   if(status)
+   {
+      QSqlQuery dbQ;
+      QString delQuery=QString("delete from %1 where _ID=%2")
+	 .arg(tableName)
+	 .arg(recNum);
+      qDebug("Delete query: %s",(const char *)delQuery);
+      dbQ.prepare(delQuery);
+      status=dbQ.exec();
+      if(! status)
+	 lastError=currentDB->lastError().text();
+   }
+   return status;
+}
+
 //
 // Update a record already in the database.
 //

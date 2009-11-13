@@ -43,12 +43,28 @@ void dataInterface::closeDB()
    if(currentDB)
       currentDB->close();
 }
+
 void dataInterface::setOrder(const QStringList &newOrder)
 {
-   readOrder=newOrder;
+   if( newOrder.count() )
+      readOrder=newOrder;
+   else
+      readOrder=QStringList("_ID");
+
    if(currentQ)
       currentQ->setSort(QSqlIndex::fromStringList(readOrder,currentQ));
 }
+
+//
+// Throw away search patterns.
+//
+void dataInterface::unSetSearch()
+{
+   makeNewCursor();
+   if(readOrder.count())
+      currentQ->setSort(QSqlIndex::fromStringList(readOrder,currentQ));
+}
+
 //
 // Set "order by" string appended to search.
 //
@@ -57,7 +73,7 @@ QString dataInterface::selectOrderString(const QStringList &fieldNames)
    QString retVal;
    if(fieldNames.count())
    {
-      retVal="order by ";
+      retVal=" order by ";
       QStringList::ConstIterator iter;
       for(iter=fieldNames.constBegin();iter != fieldNames.constEnd();++iter)
       {
@@ -194,10 +210,10 @@ void dataInterface::getRecord(colValues &qVals,bool *retP)
       if(selectStr.length() > 1)
 	 selectStr.append (" and ");
       selectStr.append(selectItemStr);
-      if(readOrder.count())
-	 selectStr.append(selectOrderString(readOrder));
    }
    selectStr.append(")");
+   if(readOrder.count())
+      selectStr.append(selectOrderString(readOrder));
    qDebug("selectStr: %s",(const char *)selectStr);
    makeNewCursor();
    currentQ->select(selectStr);
@@ -353,12 +369,12 @@ bool dataInterface::getARecord(colValues &outRec, enum fetchType t)
 	 status=currentQ->prev();
 	 break;
       case FIRST:
-	 makeNewCursor();
+	 unSetSearch();
 	 currentQ->select();
 	 status=currentQ->first();
 	 break;
       default: // LAST
-	 makeNewCursor();
+	 unSetSearch();
 	 currentQ->select();
 	 status=currentQ->last();
 	 break;
@@ -459,19 +475,14 @@ void dataInterface::deleteRecord(QString recNum,bool *retValP)
 //
 // Get the first record without killing find, order.
 //
-bool dataInterface::firstInOrder(colValues &outRec)
+bool dataInterface::unOrder()
 {
    bool retVal=isValid();
    if(retVal)   
    {
+      setOrder(QStringList());
       currentQ->select();
-      retVal=currentQ->first();
    }
-   if(retVal)
-      retVal=currentRecToColValues(currentQ,outRec);
-   else
-      lastError=currentDB->lastError().text();
-
    return retVal;
 }
 //

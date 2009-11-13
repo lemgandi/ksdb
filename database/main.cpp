@@ -137,7 +137,7 @@ int main( int argc, char ** argv )
       myList.append("Name");
       myList.append("Height");
       myIF.setOrder(myList);
-      retVal=myIF.firstInOrder(theRec);
+      myIF.getFirstRecord(theRec,&retVal);
       printRecord("First name,height",theRec);
       myIF.getNextRecord(theRec,&retVal);
       printRecord("Twost name,height",theRec);

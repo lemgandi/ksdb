@@ -35,7 +35,7 @@ class dataInterface : public QObject
    bool makeTable(QString name, const colValues &);
    bool getARecord(colValues &,enum fetchType);
    bool deleteARecord(QString recNum);
-   bool firstInOrder(colValues &);
+   bool unOrder();
 
  public slots:
    
@@ -49,8 +49,8 @@ class dataInterface : public QObject
    void getFirstRecord(colValues &,bool *retVal=0);
    void getLastRecord(colValues &,bool *retVal=0);
    void setOrder(const QStringList &);
+   void unSetSearch();
    const QStringList & getOrder();
-
    void getLastError(QString &) const;
 
  signals:   

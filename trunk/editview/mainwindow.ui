@@ -444,6 +444,7 @@
     <variable>colValues currentData;</variable>
     <variable>settingsForm *sForm;</variable>
     <variable>QWPtrList tabList;</variable>
+    <variable>QStringList dbSortOrder;</variable>
 </variables>
 <slots>
     <slot>fileOpen()</slot>
@@ -483,7 +484,8 @@
     <function access="protected">screenToDBFmt( colValues &amp; outVals, bool allVals )</function>
     <function access="protected" returnType="quitState">checkDirtyQuit()</function>
     <function access="protected">setFieldTabOrder()</function>
-    <function access="protected" returnType="bool">isInputField( QWidget * )</function>
+    <function access="protected" returnType="bool">isInputField( QWidget * wP )</function>
+    <function access="protected">setSearchOrder()</function>
 </functions>
 <pixmapinproject/>
 <layoutdefaults spacing="6" margin="11"/>

@@ -153,6 +153,7 @@ void mainwindow::fileExit()
       dumpCurrentInputData();
    delete myDatabaseInterface;
     inputDataHandlers.clear(); // Delete new ed inputhandlers.
+    tabList.clear();
     QApplication::exit(0);
 }
 
@@ -261,14 +262,13 @@ void mainwindow::Next()
    else
       dbFmtToScreen(currentData);    
 }
-
-
 void mainwindow::Search()
 {
    qDebug("Search");
 
    currentData.clear();
    screenToDBFmt(currentData,FALSE);
+   setSearchOrder();
    bool status;
    myDatabaseInterface->getRecord(currentData,&status);
    if(status)
@@ -428,6 +428,8 @@ void mainwindow::screenToDBFmt( colValues &outVals,bool allVals )
    inputHandlerIterator iter(inputDataHandlers);
    wInputHandler *thisHandler;
    fieldVals widgetValues;
+   QMap<int,QString> orderFieldNames;
+   
    while(0 != (thisHandler = iter.current()) )
    {
       QWidget *wMetaDataKey=thisHandler->getWidget();
@@ -438,12 +440,25 @@ void mainwindow::screenToDBFmt( colValues &outVals,bool allVals )
 	      outVals[widgetValues["fieldname"]] = 
 		  thisHandler->getWidgetData();
 	 if(thisHandler->hasData())
+	 {
 	      outVals[widgetValues["fieldname"]] = 
 		  thisHandler->getWidgetData();
-
+	      orderFieldNames[tabList.find(wMetaDataKey)]=widgetValues["fieldname"];
+	  }
       }
       ++iter;
   }
+   if (! orderFieldNames.isEmpty())
+   {
+       dbSortOrder.clear();
+       //QMaps are claimed to be in sorted order.
+       QMapIterator<int,QString> myIter=orderFieldNames.begin();
+       while(myIter != orderFieldNames.end())       
+       {
+	   dbSortOrder.append(*myIter);       
+	   ++myIter;
+       }
+   }
 }
 
 //
@@ -543,4 +558,15 @@ bool mainwindow::isInputField( QWidget *wP )
     if (fInfo.contains("inputField"))
        retVal=TRUE;
     return retVal;
+}
+
+// Set the order of fields for the search. This also sets the sort order until
+// overridden.
+void mainwindow::setSearchOrder()
+{
+   QStringList::iterator it;
+   for(it=dbSortOrder.begin();it != dbSortOrder.end();++it)
+      qDebug("Sort Order: %s",(const char *)*it);
+
+   myDatabaseInterface->setOrder(dbSortOrder);
 }

@@ -468,6 +468,9 @@
     <slot>clearScreen()</slot>
     <slot>fileParams()</slot>
     <slot>closeEvent( QCloseEvent * )</slot>
+    <slot>writeRecord()</slot>
+    <slot>delRecord()</slot>
+    <slot>unOrderDB()</slot>
 </slots>
 <functions>
     <function access="private" specifier="non virtual">init()</function>

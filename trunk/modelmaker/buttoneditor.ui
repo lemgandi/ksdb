@@ -83,6 +83,26 @@
                                     <string>Last</string>
                                 </property>
                             </item>
+                            <item>
+                                <property name="text">
+                                    <string>Clear</string>
+                                </property>
+                            </item>
+                            <item>
+                                <property name="text">
+                                    <string>Write</string>
+                                </property>
+                            </item>
+                            <item>
+                                <property name="text">
+                                    <string>Delete</string>
+                                </property>
+                            </item>
+                            <item>
+                                <property name="text">
+                                    <string>Unorder</string>
+                                </property>
+                            </item>
                             <property name="name">
                                 <cstring>buttonTypeListBox</cstring>
                             </property>

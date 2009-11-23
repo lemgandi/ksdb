@@ -68,6 +68,14 @@ void wButtonInputHandler::setupConnections()
       connect(realP,SIGNAL(clicked()),receiver,SLOT(First()));
    else if ("Last" == buttonType)
       connect(realP,SIGNAL(clicked()),receiver,SLOT(Last()));
+   else if ("Clear" == buttonType)
+      connect(realP,SIGNAL(clicked()),receiver,SLOT(clearScreen()));
+   else if ("Write" == buttonType)
+      connect(realP,SIGNAL(clicked()),receiver,SLOT(writeRecord()));
+   else if ("Delete" == buttonType)
+      connect(realP,SIGNAL(clicked()),receiver,SLOT(delRecord()));
+   else if ("Unorder" == buttonType)
+      connect(realP,SIGNAL(clicked()),receiver,SLOT(unOrderDB()));
    else // Quit == buttonType or defailt
       connect(realP,SIGNAL(clicked()),receiver,SLOT(Quit()));
 

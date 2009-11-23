@@ -570,3 +570,31 @@ void mainwindow::setSearchOrder()
 
    myDatabaseInterface->setOrder(dbSortOrder);
 }
+
+
+void mainwindow::writeRecord()
+{
+    screenToDatabase();
+    clearScreen();
+}
+
+
+void mainwindow::delRecord()
+{
+   if(currentData.contains("_ID"))
+   {
+      myDatabaseInterface->deleteARecord(currentData["_ID"]);
+      clearScreen();
+   }
+   
+}
+
+//
+// Set the sort order of the database back to chronological entry order
+//
+void mainwindow::unOrderDB()
+{
+    dbSortOrder.clear();
+    dbSortOrder.append("_ID");
+    myDatabaseInterface->setOrder(dbSortOrder);   
+}

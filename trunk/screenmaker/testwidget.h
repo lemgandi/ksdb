@@ -44,6 +44,7 @@ public slots:
     void moveItem();
     void resizeItem();
     void itemProperties();
+    void dumpWidgets();
 private:
     void makeLabel();
     void makeField();

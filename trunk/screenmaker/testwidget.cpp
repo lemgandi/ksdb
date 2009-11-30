@@ -40,17 +40,22 @@ testWidget::testWidget(QWidget *parent, const char *name) :
    QPushButton *editButton = new QPushButton("&Edit",this,"Edit");
    QPushButton *makeButton = new QPushButton("&Make",this,"Make");
    QPushButton *themeButton = new QPushButton("&Theme",this,"Theme");
+   QPushButton *dumpButton = new QPushButton("&Dump",this,"Dump");
+
    connect(quitButton,SIGNAL(clicked()),qApp,SLOT(quit()));
    scrMakerWidget = new screenMaker(this,"screenmaker");
    connect(scrMakerWidget,SIGNAL(regionSelected(QWidget *)),this,SLOT(regionDefined(QWidget *)));
    connect(clearButton,SIGNAL(clicked()),scrMakerWidget,SLOT(clearDrawingField()));
    connect(themeButton,SIGNAL(clicked()),this,SLOT(newBg()));
    connect(makeButton,SIGNAL(clicked()),this,SLOT(toDrawMode()));
+   connect(dumpButton,SIGNAL(clicked()),this,SLOT(dumpWidgets()));
+
    connect(this,SIGNAL(drawMode()),scrMakerWidget,SLOT(drawMode()));
    connect(editButton,SIGNAL(clicked()),scrMakerWidget,SLOT(selectMode()));
    connect(scrMakerWidget,SIGNAL(widgetSelected(QWidget *)),this,SLOT(selectWidget(QWidget *)));
    connect(scrMakerWidget,SIGNAL(widgetResized(QWidget *)),this,SLOT(deSelectWidget(QWidget *)));
    connect(scrMakerWidget,SIGNAL(widgetMoved(QWidget *)),this,SLOT(deSelectWidget(QWidget *)));
+
 
    QVBoxLayout *buttonBox=new QVBoxLayout;
    buttonBox->addWidget(quitButton);
@@ -58,6 +63,7 @@ testWidget::testWidget(QWidget *parent, const char *name) :
    buttonBox->addWidget(makeButton);
    buttonBox->addWidget(clearButton);
    buttonBox->addWidget(themeButton);
+   buttonBox->addWidget(dumpButton);
 
    QHBoxLayout *screenBox = new QHBoxLayout;
    screenBox->addWidget(scrMakerWidget);
@@ -202,3 +208,20 @@ void testWidget::regionDefined(QWidget *selectedAreaWidget)
    displayMsg(mymsg);
 }
 
+void testWidget::dumpWidgets()
+{
+   WPList myList=scrMakerWidget->getFieldList();
+
+   QWidget *currentWidget=myList.first();
+   QPoint trueLoc;
+   while(currentWidget)
+   {
+      qDebug("Widget: %p",currentWidget);
+      qDebug("\tLocation: %d %d",currentWidget->x(),currentWidget->y());
+      trueLoc=scrMakerWidget->viewportToContents(currentWidget->pos());
+      qDebug("\tTrue Location: %d %d",trueLoc.x(),trueLoc.y());
+      qDebug("\tName: %s",(const char *)currentWidget->name());      
+      currentWidget=myList.next();
+   }
+
+}

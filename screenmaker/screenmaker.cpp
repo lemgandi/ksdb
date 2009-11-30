@@ -161,6 +161,7 @@ const WPList & screenMaker::getFieldList()
    return fieldList;
 }
 
+
 //
 // Set the list of created fields from outside. This also clears the 
 // display and sets up the new fields.

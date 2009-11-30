@@ -178,8 +178,9 @@ void fileSaver::putWidgetData(const QWidget *w,const fieldVals &mdata)
    QString sizeStr = QString("<size><height>%1</height><width>%2</width></size>")
       .arg(w->height()).arg(w->width());
    saveString.append(sizeStr);
+   QPoint realPt=currentScreen->viewportToContents(w->pos());
    QString locStr = QString("<location><x>%1</x><y>%2</y></location>")
-      .arg(w->x()).arg(w->y());
+      .arg(realPt.x()).arg(realPt.y());
    saveString.append(locStr);
    saveString.append("<mdata>");
    fieldVals::ConstIterator iter;

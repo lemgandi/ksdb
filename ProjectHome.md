@@ -1,0 +1,1 @@
+The simplest possible application generator. Use a GUI to paint a screen, then open your screen in another program to populate a database table by entering data into your created screen. Uses  QT 3.3 libraries, so it might be better on a KDE desktop.
